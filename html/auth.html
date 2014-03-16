@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>	<%= submitVal %></title>
+	</head>
+	<body>
+		<div id="error">
+			<%= error %>
+		</div>
+		<div id="auth">
+			<form method="post" action="#">
+				<p>
+					<label for="login">Login: </label>
+					<input type="text" name="login" id="login" required>
+				</p>
+				<p>
+					<label for="passw">Password: </label>
+					<input type="pasword" name="passw" id="passw" required>
+				</p>
+				<p>
+					<input type="submit" value="<%= submitVal %>"/> <!-- value can be register or login -->
+				</p>
+			</form>
+		</div>
+		<% if (submitVal == "login") { %>
+			<div id="register">
+				<a href="/register">Maybe you want to register?</a>
+			</div>
+		<% } %>
+	</body>
+</html>
