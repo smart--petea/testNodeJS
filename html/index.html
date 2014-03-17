@@ -6,7 +6,9 @@
 
 		<script type="text/javascript" src="/js/models.js"></script>
 		<script type="text/javascript" src="/js/collections.js"></script>
+		<script type="text/javascript" src="/js/views.js"></script>
 		<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" href="/css/index.css">
 	</head>
 	<body>
 		<div id="user-div">
@@ -19,7 +21,15 @@
 		</div>
 		<div id="book-frame">
 			<p>
-				 <input type="text" placeholder="search regex" id="search-regex"> 
+				 <input type="text" value="/.*/" id="regex"> - js regex for name i.e. /.*/ for all names
+			 </p>
+			 <p>
+				 <input type="text" value="0" id="items-per-page"> - number of items per page. The value less or equal than 0 mean all items
+			 </p>
+			 <p>
+				 <input type="text" value="0" id="page-number"> - number of page. The value less or equal than 0 mean zero
+			</p>
+			<p>
 				 <button id="search">Search</button>
 			</p>
 			<div id="books">
