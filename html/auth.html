@@ -21,10 +21,12 @@
 				</p>
 			</form>
 		</div>
-		<% if (submitVal == "login") { %>
-			<div id="register">
-				<a href="/register">Maybe you want to register?</a>
-			</div>
-		<% } %>
+		<div id="links">
+			<% if (submitVal == "login") { %>
+					Maybe you want to<a href="/register"> register?</a>
+			<% } else {%>
+					Go back to <a href="/auth">auth page.</a>
+			<% } %>
+		</div>
 	</body>
 </html>

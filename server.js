@@ -1,8 +1,9 @@
 var http = require('http'),
 	auth = require('auth'),
 	url = require('url'),
-	books = require('books');
-
+	books = require('books'),
+	register = require('register'),
+	sessions = require('sessions');
 
 var serviceRExp = /\/([^/?]*).*/i;
 var server = new http.Server(function(req, res) {
@@ -10,22 +11,39 @@ var server = new http.Server(function(req, res) {
 
 	switch(service) {
 		case "auth":
-			auth.process(req, res);
+			if(sessions.isOpen(req)) {
+				redirectTo(res, "/books");
+			} else { 
+				auth.process(req, res);
+			}
 			break;
 		case "books":
-			books.process(req, res);
+			if(!sessions.isOpen(req)) {
+				redirectTo(res, "/auth");
+			} else { 
+				books.process(req, res);
+			}
 			break;
 		case "register":
-			res.end("register");
-			break;
-		case "":
-			res.end("index.html");
+			if(sessions.isOpen(req)) {
+				redirectTo(res, "/books");
+			} else { 
+				register.process(req, res);
+			}
 			break;
 		default:
-			//res.writeHeader(301, {"Location": "/books"});
-			res.end("unknown data");
+			res.statusCode = 404;
+			res.end("wrong path");
 			break;
 	}
 });
 
 server.listen(3000);
+
+/* functions */
+function redirectTo(res, where) {
+		res.writeHeader(301, {
+			"Location": where,
+		});
+		res.end();
+}
