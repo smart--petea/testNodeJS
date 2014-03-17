@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/underscore.js"></script>
+		<script type="text/javascript" src="/js/backbone.js"></script>
+
+		<script type="text/javascript" src="/js/models.js"></script>
+		<script type="text/javascript" src="/js/collections.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+	</head>
+	<body>
+		<div id="user-div">
+			<div id="login">
+				Hi <%= login %>!
+			</div>
+			<div id="logout">
+				<a href="/logout">Logout</a>	
+			</div>
+		</div>
+		<div id="book-frame">
+			<p>
+				 <input type="text" placeholder="search regex" id="search-regex"> 
+				 <button id="search">Search</button>
+			</p>
+			<div id="books">
+			</div>
+		</div>
+	</body>
+</html>

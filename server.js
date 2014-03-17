@@ -7,6 +7,7 @@ var http = require('http'),
 	logout = require('logout'),
 	util1 = require('util1'),
 	path = require('path'),
+	index = require('index'),
 	redirectTo = util1.redirectTo;
 
 var serviceRExp = /\/([^/?]*).*/i;
@@ -17,7 +18,7 @@ var server = new http.Server(function(req, res) {
 	switch(service) {
 		case "auth":
 			if(req.sessionId) {
-				redirectTo(res, "/books");
+				redirectTo(res, "/");
 			} else { 
 				auth.process(req, res);
 			}
@@ -31,7 +32,7 @@ var server = new http.Server(function(req, res) {
 			break;
 		case "register":
 			if(req.sessionId) {
-				redirectTo(res, "/books");
+				redirectTo(res, "/");
 			} else { 
 				register.process(req, res);
 			}
@@ -45,11 +46,19 @@ var server = new http.Server(function(req, res) {
 			break;
 		case 'css':
 			var cssPath = path.join(__dirname, "css", path.basename(req.url));
-			util1.throwFile(req, res, cssPath);
+			util1.throwFile(req, res, {filePath: cssPath, 'Content-Type': "text/css"});
 			break;
 		case 'js':
 			var jsPath = path.join(__dirname, "js", path.basename(req.url));
-			util1.throwFile(req, res, jsPath);
+			util1.throwFile(req, res, {filePath: jsPath, 'Content-Type': "application/javascript"});
+			break;
+		case "":
+		case "index.html":
+			if(!req.sessionId) {
+				redirectTo(res, "/auth");
+			} else { 
+				index.process(req, res);
+			}
 			break;
 		default:
 			res.statusCode = 404;
