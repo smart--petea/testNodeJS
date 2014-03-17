@@ -1,12 +1,16 @@
 $(function() {
+	var $search = $('#search');
 	var collection = new BookCollection();
 	var collectionView = new BookCollectionView({
 		collection: collection,
 	});
 	collectionView.setElement($('#books'));
+	collection.on('destroy', function() {
+		$search.trigger('click');
+	});
 
 	var $regex = $('#regex');
-	$('#search').click(function() {
+	$search.click(function() {
 		var regex = $regex.val() || '/.*/';	
 		if(!(eval(regex) instanceof RegExp)) alert("wrong regexp");
 

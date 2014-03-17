@@ -22,10 +22,11 @@ var BookView = Backbone.View.extend({
 	className: 'book',
 
 	events: {
-		'click .picture': 'clickPicture',
+		'click .remove': 'removeItem',
 	},
 
-	clickPicture: function() {
+	removeItem: function() {
+		this.model.destroy();
 	},
 
 	render: function() {
