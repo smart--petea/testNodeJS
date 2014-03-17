@@ -21,6 +21,7 @@ $(function() {
 				name: regex,
 				perPage: perPage,
 				pageNumber: pageNumber,
+				sort: $('[name=sort]:checked').val(),
 			}
 		});
 	});

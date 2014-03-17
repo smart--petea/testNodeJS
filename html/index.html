@@ -30,6 +30,12 @@
 				 <input type="text" value="0" id="page-number"> - number of page. The value less or equal than 0 mean zero
 			</p>
 			<p>
+					<input type="radio" value="0" checked name='sort'>Unsorted</input>
+					<input type="radio" value="-1" name='sort'>Sort Desc</input>
+					<input type="radio" value="+1" name='sort'>Sort Asc</input>
+					- The sort is server side by name. The sort will take effect only after click on search button.
+			</p>
+			<p>
 				 <button id="search">Search</button>
 			</p>
 			<div id="books">

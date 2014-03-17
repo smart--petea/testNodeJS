@@ -26,8 +26,6 @@ var BookView = Backbone.View.extend({
 	},
 
 	clickPicture: function() {
-		console.log(arguments);
-		console.log('clickPicture');
 	},
 
 	render: function() {
@@ -45,9 +43,7 @@ var BookCollectionView = Backbone.View.extend({
 		var that = this;
 		var bookView;
 		that.$el.empty();
-		console.log('collection: ', that.collection);
 		that.collection.each(function(mod, index) {
-			console.log('mod ', mod);
 			bookView = new BookView({
 				model: mod,
 			});	
